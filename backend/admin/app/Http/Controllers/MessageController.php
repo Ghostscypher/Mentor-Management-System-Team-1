@@ -169,7 +169,7 @@ class MessageController extends Controller
             SELECT distinct(m.room_id)
             FROM messages m
             WHERE m.sender_id = ? OR m.receiver_id = ?
-            AND ((m.broadcast = 0 OR m.broadcast IS NULL) AND m.sender_id != ?)
+            AND (m.broadcast_id IS NULL AND m.sender_id != ?)
             GROUP BY m.room_id
             ORDER BY created_at ASC
             LIMIT 20 OFFSET ?
